@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Asistencia</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        select {
+            width: calc(100% - 22px); /* Considerando el ancho del borde */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+            appearance: none; /* Oculta la flecha del select */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7 10l5 5 5-5z" /></svg>'); /* Ícono de flecha */
+            background-repeat: no-repeat;
+            background-position: right 8px top 50%; /* Posición de la flecha */
+            background-size: 18px; /* Tamaño del ícono de flecha */
+            cursor: pointer;
+        }
+
+        /* Estilo cuando se enfoca */
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        /* Estilo cuando se pasa el mouse */
+        select:hover {
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <i class="school-icon fas fa-school"></i>
+        <h1>Validación de Asistencia</h1>
+        <form id="profesorForm" class="form" onsubmit="enviarFormulario(); return false;">
+            <div class="form-group">
+                <label for="nombreProfesor">Nombre del profesor:</label>
+                <select id="nombreProfesor">
+                    <option value="" selected disabled>Seleccione su nombre</option>
+                    <option value="Andres">Andrés</option>
+                    <option value="Brayan">Brayan</option>
+                    <option value="Heidy">Heidy</option>
+                    <option value="Victor">Víctor</option>
+                    <option value="Dayana">Dayana</option>
+                    <option value="Valentina">Valentina</option>
+                    <option value="Valeria">Valeria</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nombreMateria">Nombre de la materia:</label>
+                <select id="nombreMateria">
+                    <option value="" selected disabled>Seleccione una materia</option>
+                    <option value="fisica">Física</option>
+                    <option value="calculo">Cálculo</option>
+                    <option value="biologia">Biología</option>
+                    <option value="ingles">Inglés</option>
+                    <option value="espanol">Español</option>
+                    <option value="catedra">Cátedra</option>
+                    <option value="empresarial">Empresarial</option>
+                </select>
+            </div>
+            <button type="submit">Enviar</button>
+            <p id="errorMessage" class="error-message" style="display: none;"></p>
+        </form>
+        <p class="footer">© 2024 Escuela XYZ. Todos los derechos reservados.</p>
+    </div>
+
+    <script>
+        function enviarFormulario() {
+            const maestro = document.getElementById("nombreProfesor").value;
+            const materiaAsignada = asignarMateria(maestro);
+            const materiaSeleccionada = document.getElementById("nombreMateria").value;
+
+            if (materiaAsignada !== materiaSeleccionada) {
+                mostrarError("La materia seleccionada no coincide con la asignada al profesor.");
+                return;
+            }
+
+            const materia = materiaSeleccionada;
+            const codigo = generarCodigo();
+            const profesoresValidos = ["Andres", "Brayan", "Heidy", "Victor", "Dayana", "Valentina", "Valeria"];
+            const materiasValidas = ["fisica", "calculo", "biologia", "ingles", "espanol", "catedra", "empresarial"];
+
+            if (!profesoresValidos.includes(maestro)) {
+                mostrarError("Por favor seleccione un profesor válido.");
+                return;
+            }
+
+            if (!materiasValidas.includes(materia)) {
+                mostrarError("Por favor seleccione una materia válida.");
+                return;
+            }
+
+            // Guardar datos en sessionStorage para usarlos en la siguiente página
+            sessionStorage.setItem("maestro", maestro);
+            sessionStorage.setItem("materia", materia);
+            sessionStorage.setItem("codigo", codigo);
+
+            // Redirigir a la siguiente página
+            window.location.href = "pagina2.html";
+        }
+
+        function generarCodigo() {
+            return Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+        }
+
+        function mostrarError(message) {
+            const errorMessage = document.getElementById("errorMessage");
+            errorMessage.textContent = message;
+            errorMessage.style.display = "block";
+        }
+
+        function asignarMateria(profesor) {
+            switch (profesor) {
+                case "Andres":
+                    return "fisica";
+                case "Brayan":
+                    return "calculo";
+                case "Heidy":
+                    return "biologia";
+                case "Victor":
+                    return "ingles";
+                case "Dayana":
+                    return "espanol";
+                case "Valentina":
+                    return "catedra";
+                case "Valeria":
+                    return "empresarial";
+                default:
+                    return "";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código Generado</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+.asistencia-item {
+    background-color: #94b8db; /* Color de fondo */
+    border: 1px solid #0e0e0e; /* Borde */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 15px; /* Relleno */
+    margin-bottom: 15px; /* Margen inferior */
+}
+
+select {
+    width: calc(100% - 22px); /* Considerando el ancho del borde */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    appearance: none; /* Oculta la flecha del select */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M7 10l5 5 5-5z" /></svg>'); /* Ícono de flecha */
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%; /* Posición de la flecha */
+    background-size: 18px; /* Tamaño del ícono de flecha */
+    cursor: pointer;
+}
+
+/* Estilo cuando se enfoca */
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo cuando se pasa el mouse */
+select:hover {
+    border-color: #007bff;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Contenedor del formulario -->
+        <div id="containerFormulario">
+            <i class="school-icon fas fa-school"></i>
+            <h1>Código Generado</h1>
+            <h2>HOLA ESTUDIANTES, ES HORA DE ENTRAR A CLASES</h2>
+
+            <!-- Contenedor para el mensaje de confirmación -->
+            <div id="mensajeConfirmacion" style="display: none; background-color: lightgreen; padding: 10px; margin-top: 10px;"></div>
+
+            <!-- Formulario para el nombre del estudiante -->
+            <form id="estudianteForm">
+                <div class="form-group">
+                    <label for="nombreEstudiante">Nombre del Estudiante:</label>
+                    <input type="text" id="nombreEstudiante" placeholder="Ingrese su nombre">
+                </div>
+            </form>
+
+            <!-- Formulario para el nombre de la materia -->
+            <form id="materiaForm">
+                <div class="form-group">
+                    <label for="nombreMateria">Nombre de la Materia:</label>
+                    <select id="nombreMateria">
+                        <option value="" selected disabled>Seleccione una materia</option>
+                        <option value="fisica">Física</option>
+                        <option value="calculo">Cálculo</option>
+                        <option value="biologia">Biología</option>
+                        <option value="ingles">Inglés</option>
+                        <option value="espanol">Español</option>
+                        <option value="catedra">Cátedra</option>
+                        <option value="empresarial">Empresarial</option>
+                    </select>
+                </div>
+            </form>
+
+            <!-- Formulario para el código de asistencia -->
+            <form id="codigoForm">
+                <div class="form-group">
+                    <label for="codigo">Código de Asistencia:</label>
+                    <input type="text" id="codigo" placeholder="Ingrese el código de asistencia">
+                </div>
+            </form>
+
+            <button onclick="verificarRespuestas()">Enviar</button>
+
+            <div id="mensajeError" style="color: red;"></div>
+        </div>
+
+        <!-- Contenedor de la lista de estudiantes -->
+        <div id="containerListaEstudiantes" style="display: none;">
+            <h2>Lista de Estudiantes Registrados:</h2>
+            <ul id="listaEstudiantes"></ul>
+        </div>
+
+        <div id="codigoContainer">
+            <p id="codigoGenerado"></p>
+        </div>
+        <div id="asistenciasGuardadas"></div> <!-- Contenedor para mostrar las asistencias guardadas -->
+
+        <p class="footer">© 2024 Escuela XYZ. Todos los derechos reservados.</p>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="formulario.js"></script>
+</body>
+</html>
